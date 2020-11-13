@@ -1,6 +1,6 @@
 {
     "name": "Old Google Logos And Icons",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "Brings back old Google apps logos and icons for Gmail, Drive, Calendar and Meet.",
     "permissions": [],
     "background": {
@@ -30,7 +30,8 @@
       }
     ],
     "web_accessible_resources": [
-      "images/*.png"
+      "images/*.png", 
+      "images/*.ico"
     ],
     "manifest_version": 2
   }
