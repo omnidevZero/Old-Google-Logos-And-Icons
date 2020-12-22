@@ -38,7 +38,7 @@ function changeDynamics(){
     document.querySelectorAll('link[type="image/x-icon"]')[0].href = chrome.runtime.getURL(`/images/calendar/favicons/favicon_v2014_${day}.ico`);
     document.querySelectorAll('link[type="image/x-icon"]')[1].href = chrome.runtime.getURL(`/images/calendar/favicons/favicon_v2014_${day}.ico`);
     var dayZeroed = ("0" + day).slice(-2);
-    var logo = document.querySelector('img[src*="//ssl.gstatic.com/calendar/images/dynamiclogo/lUkwQcfJg4wWmQhhAFLWO0z3HjG6yOs9/"]');
+    var logo = document.querySelector('img[src*="//ssl.gstatic.com/calendar/images/dynamiclogo"]');
     logo.src = chrome.runtime.getURL(`/images/calendar/logos/cal_${dayZeroed}_v2.png`);
     logo.srcset = chrome.runtime.getURL(`/images/calendar/logos/cal_${dayZeroed}_v2.png`);
 }
