@@ -13,24 +13,39 @@ var urls = {
 function change(page){
     switch (page) {
         case "gmail":
-            document.querySelector('link[rel="shortcut icon"]').href = urls.gmail_favicon;
+            repeatFor(10000, 100, () => {
+                document.querySelector('link[rel="shortcut icon"]').href = urls.gmail_favicon;
+            });
             break;
         case "drive":
-            document.querySelector('link[rel="icon"]').href = urls.drive_favicon;
+            repeatFor(10000, 100, () => {
+                document.querySelector('link[rel="icon"]').href = urls.drive_favicon;
+            })
             break;
         case "calendar":
-            document.querySelectorAll('link[type="image/x-icon"]')[0].href = urls.calendar_favicon;
-            document.querySelectorAll('link[type="image/x-icon"]')[1].href = urls.calendar_favicon;
-            changeDynamics();
+            repeatFor(10000, 100, () => {
+                document.querySelectorAll('link[type="image/x-icon"]')[0].href = urls.calendar_favicon;
+                document.querySelectorAll('link[type="image/x-icon"]')[1].href = urls.calendar_favicon;
+                changeDynamics();
+            })
             break;
         case "meet":
-            var links = document.querySelectorAll('link[rel="shortcut icon"]');
-            links.forEach(element => {
-                element.href = urls.meet_favicon;
-            });
+            repeatFor(10000, 100, () => {
+                var links = document.querySelectorAll('link[rel="shortcut icon"]');
+                links.forEach(element => {
+                    element.href = urls.meet_favicon;
+                });
+            })
         default:
             break;
     }
+}
+
+function repeatFor(timeout, interval, func){
+    var repeat = setInterval(func, interval);
+    setTimeout(() => {
+        clearInterval(repeat)
+    }, timeout);
 }
 
 function changeDynamics(){
@@ -39,8 +54,10 @@ function changeDynamics(){
     document.querySelectorAll('link[type="image/x-icon"]')[1].href = chrome.runtime.getURL(`/images/calendar/favicons/favicon_v2014_${day}.ico`);
     var dayZeroed = ("0" + day).slice(-2);
     var logo = document.querySelector('img[src*="//ssl.gstatic.com/calendar/images/dynamiclogo"]');
-    logo.src = chrome.runtime.getURL(`/images/calendar/logos/cal_${dayZeroed}_v2.png`);
-    logo.srcset = chrome.runtime.getURL(`/images/calendar/logos/cal_${dayZeroed}_v2.png`);
+    if (logo != null){
+        logo.src = chrome.runtime.getURL(`/images/calendar/logos/cal_${dayZeroed}_v2.png`);
+        logo.srcset = chrome.runtime.getURL(`/images/calendar/logos/cal_${dayZeroed}_v2.png`);
+    }
 }
 
 if (window.location.href.includes("mail.google.com")){
